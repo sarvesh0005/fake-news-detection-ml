@@ -155,20 +155,22 @@ data/processed/processed_news.csv
 
 # Feature Engineering
 
-The cleaned text was converted into numerical features using **TF-IDF Vectorization**.
+Machine learning models cannot process raw text directly. Therefore, the cleaned news articles were converted into numerical feature vectors using **TF-IDF (Term Frequency–Inverse Document Frequency)**.
+
+TF-IDF was selected because it assigns higher importance to informative words while reducing the influence of very common words. It is computationally efficient, easy to interpret, and performs well with classical machine learning algorithms such as Logistic Regression and Linear SVM.
 
 ### TF-IDF Parameters
 
-| Parameter | Value |
-|----------|-------|
-| max_features | 20000 |
-| ngram_range | (1,2) |
-| min_df | 2 |
-| max_df | 0.95 |
+| Parameter | Value | Reason |
+|----------|-------|--------|
+| max_features | 20000 | Limits the vocabulary size to the most informative words, reducing memory usage and noise. |
+| ngram_range | (1,2) | Uses both single words (unigrams) and two-word phrases (bigrams) to capture more context. |
+| min_df | 2 | Removes words that appear only once, as they usually contribute little to model performance. |
+| max_df | 0.95 | Removes extremely common words that appear in almost every document and carry little discriminative information. |
 
 ### Dataset Split
 
-The dataset was divided using stratified sampling.
+The dataset was divided using stratified sampling to maintain the class distribution across all subsets.
 
 | Dataset | Percentage |
 |---------|------------|
@@ -176,10 +178,7 @@ The dataset was divided using stratified sampling.
 | Validation | 10% |
 | Testing | 20% |
 
-Random seed used:
-
-```
-random_state = 42
+The split was performed using **random_state = 42** to ensure reproducibility of the experimental results.
 ```
 
 ---
@@ -194,6 +193,27 @@ Three classification models were trained.
 
 Each model was trained using the same TF-IDF features and evaluated on the validation dataset.
 
+## Why These Models?
+
+### Multinomial Naive Bayes
+
+Multinomial Naive Bayes is one of the most common baseline models for text classification. It is simple, computationally efficient, and works well with TF-IDF features. This model was used to establish a strong baseline for comparison.
+
+### Logistic Regression
+
+Logistic Regression is a linear classification algorithm that performs well on high-dimensional text data. It is easy to train, produces stable results, and is widely used for binary text classification problems.
+
+### Linear SVM
+
+Linear Support Vector Machine (Linear SVM) is considered one of the strongest classical machine learning algorithms for text classification. It performs well on sparse and high-dimensional feature spaces created by TF-IDF vectorization and often achieves better generalization than other linear models.
+
+---
+
+## Why Compare Multiple Models?
+
+Instead of selecting a single algorithm directly, three different models were trained using the same preprocessing steps and TF-IDF features.
+
+Comparing multiple models helps identify the algorithm that performs best on the given dataset. This makes the model selection process objective and data-driven rather than based on assumptions.
 ---
 
 # Model Selection
