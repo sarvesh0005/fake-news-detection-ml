@@ -19,7 +19,26 @@ The project was developed as part of the AI/ML Online Assessment.
 
 # Dataset
 
-Dataset Used:
+## Dataset Setup
+
+The dataset is not included in this repository as per the assignment instructions.
+
+Download the Fake and Real News Dataset from the provided Kaggle link and place the files as shown below:
+
+```
+data/
+└── raw/
+    ├── Fake.csv
+    └── Real.csv
+```
+
+After placing the dataset in the `data/raw/` folder, run the notebooks in the following order:
+
+1. 01_EDA.ipynb
+2. 02_Preprocessing.ipynb
+3. 03_Feature_Engineering.ipynb
+4. 04_Model_Training.ipynb
+5. 05_Prediction.ipynb
 
 **Fake and Real News Dataset (Kaggle)**
 
