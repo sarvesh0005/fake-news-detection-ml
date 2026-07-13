@@ -187,6 +187,22 @@ TF-IDF was selected because it assigns higher importance to informative words wh
 | min_df | 2 | Removes words that appear only once, as they usually contribute little to model performance. |
 | max_df | 0.95 | Removes extremely common words that appear in almost every document and carry little discriminative information. |
 
+## Modern NLP Extension
+
+In addition to the classical TF-IDF based pipeline, the project also explores a modern NLP approach using **Sentence Transformers**.
+
+### Pipeline
+
+News Article
+→ Sentence Transformer (all-MiniLM-L6-v2)
+→ Semantic Embeddings (384 dimensions)
+→ Linear SVM
+→ Fake / Real Prediction
+
+### Key Observation
+
+A comparison between the classical TF-IDF + Linear SVM model and the Sentence Transformer + Linear SVM model was performed. While the transformer embeddings provided richer semantic representations, the TF-IDF model achieved higher accuracy on this dataset, highlighting the importance of selecting models based on empirical evaluation rather than complexity alone.
+
 ### Dataset Split
 
 The dataset was divided using stratified sampling to maintain the class distribution across all subsets.
